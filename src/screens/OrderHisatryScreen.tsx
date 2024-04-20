@@ -1,10 +1,10 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-const App = () => {
+const OrderHistoryScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>App</Text>
+      <Text>OrderHistoryScreen</Text>
     </View>
   );
 };
@@ -13,4 +13,4 @@ const styles = StyleSheet.create({
   container: {},
 });
 
-export default App;
+export default OrderHistoryScreen;
