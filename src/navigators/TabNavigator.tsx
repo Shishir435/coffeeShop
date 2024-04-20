@@ -9,7 +9,42 @@ import {COLORS} from '../theme/theme';
 import {BlurView} from '@react-native-community/blur';
 import CustomIcons from '../components/customIcons';
 
+interface IconProps {
+  focused: boolean;
+}
 const Tab = createBottomTabNavigator();
+const TabBarBackground = () => (
+  <BlurView overlayColor="" blurAmount={15} style={styles.BlurViewStyles} />
+);
+
+const HomeIcon = ({focused}: IconProps) => (
+  <CustomIcons
+    name="home"
+    size={25}
+    color={focused ? COLORS.primaryOrangeHex : COLORS.primaryLightGreyHex}
+  />
+);
+const CartIcon = ({focused}: IconProps) => (
+  <CustomIcons
+    name="cart"
+    size={25}
+    color={focused ? COLORS.primaryOrangeHex : COLORS.primaryLightGreyHex}
+  />
+);
+const FavouriteIcon = ({focused}: IconProps) => (
+  <CustomIcons
+    name="like"
+    size={25}
+    color={focused ? COLORS.primaryOrangeHex : COLORS.primaryLightGreyHex}
+  />
+);
+const HistoryIcon = ({focused}: IconProps) => (
+  <CustomIcons
+    name="bell"
+    size={25}
+    color={focused ? COLORS.primaryOrangeHex : COLORS.primaryLightGreyHex}
+  />
+);
 const TabNavigator = () => {
   return (
     <Tab.Navigator
@@ -18,72 +53,34 @@ const TabNavigator = () => {
         tabBarHideOnKeyboard: true,
         tabBarShowLabel: false,
         tabBarStyle: styles.tabBarStyle,
-        tabBarBackground: () => (
-          <BlurView
-            overlayColor=""
-            blurAmount={15}
-            style={styles.BlurViewStyles}
-          />
-        ),
+        tabBarBackground: TabBarBackground,
       }}>
       <Tab.Screen
         name="Home"
         component={HomeScreen}
         options={{
-          tabBarIcon: ({focused}) => (
-            <CustomIcons
-              name="home"
-              size={25}
-              color={
-                focused ? COLORS.primaryOrangeHex : COLORS.primaryLightGreyHex
-              }
-            />
-          ),
+          tabBarIcon: HomeIcon,
         }}
       />
       <Tab.Screen
-        name="cart"
+        name="Cart"
         component={CartScreen}
         options={{
-          tabBarIcon: ({focused}) => (
-            <CustomIcons
-              name="cart"
-              size={25}
-              color={
-                focused ? COLORS.primaryOrangeHex : COLORS.primaryLightGreyHex
-              }
-            />
-          ),
+          tabBarIcon: CartIcon,
         }}
       />
       <Tab.Screen
         name="Favourite"
         component={FavouriteScreen}
         options={{
-          tabBarIcon: ({focused}) => (
-            <CustomIcons
-              name="like"
-              size={25}
-              color={
-                focused ? COLORS.primaryOrangeHex : COLORS.primaryLightGreyHex
-              }
-            />
-          ),
+          tabBarIcon: FavouriteIcon,
         }}
       />
       <Tab.Screen
         name="History"
         component={OrderHistoryScreen}
         options={{
-          tabBarIcon: ({focused}) => (
-            <CustomIcons
-              name="bell"
-              size={25}
-              color={
-                focused ? COLORS.primaryOrangeHex : COLORS.primaryLightGreyHex
-              }
-            />
-          ),
+          tabBarIcon: HistoryIcon,
         }}
       />
     </Tab.Navigator>
